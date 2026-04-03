@@ -1,0 +1,7 @@
+flask
+PyPDF2
+python-docx
+pytesseract
+pillow
+textblob
+spacy
