@@ -6,6 +6,7 @@ import pytesseract
 from PIL import Image
 import spacy
 from textblob import TextBlob
+import os
 
 app = Flask(__name__)
 API_KEY = "sk_track2_987654321"
@@ -24,7 +25,10 @@ def extract_docx(path):
 
 # Text extraction from images
 def extract_image(path):
-    return pytesseract.image_to_string(Image.open(path))
+    try:
+        return pytesseract.image_to_string(Image.open(path))
+    except:
+        return "OCR not supported"
 
 # -------- NLP -------- #
 
