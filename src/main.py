@@ -7,8 +7,10 @@ from PIL import Image
 import spacy
 from textblob import TextBlob
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 API_KEY = "sk_track2_987654321"
 nlp = spacy.load("en_core_web_sm")
 
@@ -90,5 +92,3 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT",5000))
     app.run(host="0.0.0.0", port=port)
 
-from flask_cors import CORS
-CORS(app)

@@ -61,38 +61,62 @@
   <pre id="output">Result will appear here...</pre>
 </div>
 
+
+</body>
 <script>
 async function uploadFile() {
+  console.log("Button clicked");
+
   const file = document.getElementById('fileInput').files[0];
+
   if (!file) {
     alert("Please select a file");
     return;
   }
 
   const reader = new FileReader();
-  reader.readAsDataURL(file);
 
   reader.onload = async function () {
-    const base64 = reader.result.split(',')[1];
+    try {
+      console.log("File loaded");
 
-    const response = await fetch("https://document-api-oldp.onrender.com/api/document-analyze", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": "sk_track2_987654321"
-      },
-      body: JSON.stringify({
-        fileName: file.name,
-        fileType: file.name.split('.').pop(),
-        fileBase64: base64
-      })
-    });
+      const base64 = reader.result.split(',')[1];
 
-    const data = await response.json();
-    document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      console.log("Sending request...");
+
+      const response = await fetch("https://document-api-oldp.onrender.com/api/document-analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": "sk_track2_987654321"
+        },
+        body: JSON.stringify({
+          fileName: file.name,
+          fileType: file.name.split('.').pop(),
+          fileBase64: base64
+        })
+      });
+
+      console.log("Response received");
+
+      const data = await response.json();
+
+      console.log("Data:", data);
+
+      document.getElementById("output").textContent =
+        JSON.stringify(data, null, 2);
+
+    } catch (error) {
+      console.error("Error:", error);
+      document.getElementById("output").textContent =
+        "Error: " + error;
+    }
   };
+
+  reader.readAsDataURL(file);
 }
 </script>
 
 </body>
+</script>
 </html>

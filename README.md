@@ -40,3 +40,8 @@ x-api-key: sk_track2_987654321
 -Use spaCy for Named Entity Recognition
 -Use TextBlob for sentiment classification
 -Generate summary using truncation for efficiency
+
+## AI Tools Used
+ChatGPT – used for guidance, debugging, and understanding concepts
+spaCy – for entity extraction
+TextBlob – for sentiment analysis
