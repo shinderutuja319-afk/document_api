@@ -10,7 +10,7 @@ import os
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)             #it allows cross-origin requests from any domain to our API.
 API_KEY = "sk_track2_987654321"
 nlp = spacy.load("en_core_web_sm")
 
